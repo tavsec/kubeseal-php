@@ -1,0 +1,30 @@
+{
+    "name": "tavsec/kubeseal-php",
+    "description": "PHP wrapper for Kubeseal executable",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Tavsec\\KubesealPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Timotej Avsec",
+            "email": "avsectimotej1@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Tavsec\\KubesealPhp"
+            ]
+        }
+    },
+    "require": {
+        "symfony/process": "^6.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10"
+    }
+}

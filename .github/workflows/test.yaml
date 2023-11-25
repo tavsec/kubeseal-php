@@ -44,4 +44,4 @@ jobs:
               run: echo $CERT > cert.pem
 
             - name: Execute tests (PHPUnit)
-              run: ./vendor/bin/phpunit
+              run: ./vendor/bin/phpunit tests

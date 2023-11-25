@@ -44,7 +44,7 @@ final class KubesealTest extends TestCase
     public function testEncryptRawClusterWide(){
         $kubeseal = new \Tavsec\KubesealPhp\Kubeseal();
         $kubeseal->setKubesealPath("kubeseal");
-        $kubeseal->setCertificatePath("../cert.pem");
+        $kubeseal->setCertificatePath("cert.pem");
 
         $res = $kubeseal->encryptRaw("test", \Tavsec\KubesealPhp\Kubeseal::SCOPE_CLUSTER);
         $this->assertIsString($res);
@@ -54,7 +54,7 @@ final class KubesealTest extends TestCase
     public function testEncryptRawNamespaceWide(){
         $kubeseal = new \Tavsec\KubesealPhp\Kubeseal();
         $kubeseal->setKubesealPath("kubeseal");
-        $kubeseal->setCertificatePath("../cert.pem");
+        $kubeseal->setCertificatePath("cert.pem");
 
         $res = $kubeseal->encryptRaw("test", \Tavsec\KubesealPhp\Kubeseal::SCOPE_NAMESPACE, null, "test");
         $this->assertIsString($res);
@@ -64,7 +64,7 @@ final class KubesealTest extends TestCase
     public function testEncryptRawStrict(){
         $kubeseal = new \Tavsec\KubesealPhp\Kubeseal();
         $kubeseal->setKubesealPath("kubeseal");
-        $kubeseal->setCertificatePath("../cert.pem");
+        $kubeseal->setCertificatePath("cert.pem");
 
         $res = $kubeseal->encryptRaw(data: "test", scope: \Tavsec\KubesealPhp\Kubeseal::SCOPE_STRICT, secretName: "test", namespace: "test");
         $this->assertIsString($res);

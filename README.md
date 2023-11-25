@@ -10,7 +10,7 @@ that allows you to encrypt your Kubernetes secrets using a public key in PHP.
 
 ## Requirements
 
-- PHP >= 7.2
+- PHP >= 8.1
 - ``kubeseal`` executable
 - sealed secrets public key* OR  
 - `kubeseal` executable connected to Kubernetes cluster

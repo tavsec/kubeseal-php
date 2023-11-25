@@ -41,9 +41,7 @@ jobs:
                 install -m 755 kubeseal /usr/local/bin/kubeseal
 
             - name: Add public key file
-              run: echo $CERT > cert.pem
-              env:
-                  CERT: ${{ secrets.CERT }}
+              run: echo ${{ secrets.CERT }} > ./cert.pem
 
             - name: Execute tests (PHPUnit)
               run: ./vendor/bin/phpunit tests

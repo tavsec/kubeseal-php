@@ -1,0 +1,47 @@
+name: PHPUnit Tests
+
+on:
+    push:
+        branches:
+            - main
+            - develop
+    pull_request:
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                php-version: ['8.1', '8.2']
+
+        name: PHP ${{ matrix.php-version }}
+
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php-version }}
+                  tools: composer:v2
+                  coverage: none
+
+            - name: Validate Composer.json and Composer.lock
+              run: composer validate --strict
+
+            - name: Install dependencies
+              run: composer install --prefer-dist --no-progress --no-interaction
+
+            - name: Install kubeseal
+              run: |
+                wget "https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.23.0/kubeseal-0.23.0-linux-amd64.tar.gz"
+                tar -xvzf kubeseal-0.23.0-linux-amd64.tar.gz kubeseal
+                install -m 755 kubeseal /usr/local/bin/kubeseal
+
+            - name: Create random public key file
+              run: echo $CERT > cert.pem
+
+            - name: Execute tests (PHPUnit)
+              run: ./vendor/bin/phpunit

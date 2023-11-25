@@ -66,7 +66,7 @@ final class KubesealTest extends TestCase
         $kubeseal->setKubesealPath("kubeseal");
         $kubeseal->setCertificatePath("../cert.pem");
 
-        $res = $kubeseal->encryptRaw("test", \Tavsec\KubesealPhp\Kubeseal::SCOPE_STRICT, "test", "test");
+        $res = $kubeseal->encryptRaw(data: "test", scope: \Tavsec\KubesealPhp\Kubeseal::SCOPE_STRICT, secretName: "test", namespace: "test");
         $this->assertIsString($res);
         $this->assertStringStartsWith("Ag", $res);
     }

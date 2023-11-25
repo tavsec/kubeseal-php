@@ -37,33 +37,35 @@ full manifest.
 All 3 encryption scopes are supported: `strict`, `cluster-wide` and `namespace-wide`.
 
 ```php
-        $kubeseal = new \Tavsec\KubesealPhp\Kubeseal();
-        $kubeseal->setKubesealPath("/usr/bin/kubeseal");
-        
-        // Required only if you don't have kubeseal connected to Kubernetes cluster
-        $kubeseal->setCertificatePath("kubeseal_cert.pem");
-              
-        // Encrypt using strict scope
-        $sealedValue = $kubeseal->encryptRaw(
-            data: "my-secret-value", 
-            scope: \Tavsec\KubesealPhp\Kubeseal::SCOPE_STRICT, 
-            secretName: "secret-name", 
-            namespace: "namespace"
-        );
+use Tavsec\KubesealPhp\Kubeseal;
 
-        // Encrypt using namespace-wide scope
-        $sealedValue = $kubeseal->encryptRaw(
-            data: "my-secret-value", 
-            scope: \Tavsec\KubesealPhp\Kubeseal::SCOPE_NAMESPACE, 
-            namespace: "namespace"
-        );
-        
-        // Encrypt using cluster-wide scope
-        $sealedValue = $kubeseal->encryptRaw(
-            data: "my-secret-value", 
-            scope: \Tavsec\KubesealPhp\Kubeseal::SCOPE_CLUSTER
-        );
-        
-        echo $sealedValue; // #Ag...
+$kubeseal = new Kubeseal();
+$kubeseal->setKubesealPath("/usr/bin/kubeseal");
+
+// Required only if you don't have kubeseal connected to Kubernetes cluster
+$kubeseal->setCertificatePath("kubeseal_cert.pem");
+      
+// Encrypt using strict scope
+$sealedValue = $kubeseal->encryptRaw(
+    data: "my-secret-value", 
+    scope: Kubeseal::SCOPE_STRICT, 
+    secretName: "secret-name", 
+    namespace: "namespace"
+);
+
+// Encrypt using namespace-wide scope
+$sealedValue = $kubeseal->encryptRaw(
+    data: "my-secret-value", 
+    scope: Kubeseal::SCOPE_NAMESPACE, 
+    namespace: "namespace"
+);
+
+// Encrypt using cluster-wide scope
+$sealedValue = $kubeseal->encryptRaw(
+    data: "my-secret-value", 
+    scope: Kubeseal::SCOPE_CLUSTER
+);
+
+echo $sealedValue; // #Ag...
         
 ```

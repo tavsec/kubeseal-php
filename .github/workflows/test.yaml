@@ -40,8 +40,10 @@ jobs:
                 tar -xvzf kubeseal-0.23.0-linux-amd64.tar.gz kubeseal
                 install -m 755 kubeseal /usr/local/bin/kubeseal
 
-            - name: Create random public key file
+            - name: Add public key file
               run: echo $CERT > cert.pem
+              env:
+                  CERT: ${{ secrets.CERT }}
 
             - name: Execute tests (PHPUnit)
               run: ./vendor/bin/phpunit tests
